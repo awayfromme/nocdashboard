@@ -1,0 +1,28 @@
+.clock{
+    align-self: center;
+    display: grid;
+    position: relative;
+ top:10%;
+ left: 120%;
+ transform: translateX(-50%) translateY(-50%);
+    width: 200px;
+    height: 50px;
+    border: 2cm;
+    border-block-color: black;
+}
+h1{
+    margin-left: 2rem;
+    font-weight: 500;
+    text-align: center;
+    font-family: "Oxygen Mono",monospace;
+    font-size: 7em;
+    
+    
+}
+.timer{
+    text-align: center;
+    background-color: white;
+    font-family: monospace;
+    font-size: 2rem;
+    padding-top: 1.01em;
+}

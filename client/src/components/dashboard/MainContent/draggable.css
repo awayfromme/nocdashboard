@@ -1,0 +1,22 @@
+body {
+    background: #333;
+    color:#EEE;
+  }
+  
+  #wrapper {
+    width:700px; /* width of viewport in your case 100% */
+    height:400px; /* height of viewport in your case 100% */
+    overflow:hidden;
+    margin:10px 0 0 0;
+    border:1px solid #777;
+    background:#EEE;
+    /*position:fixed;*/
+    position:relative; /* what #map img is relative to */
+  }
+  
+  #videofile{
+    position:absolute; /* need this to make dragging easy */
+    top:0;
+    left:0;
+    border:0 none transparent;
+  }

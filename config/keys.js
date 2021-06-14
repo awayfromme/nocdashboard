@@ -1,0 +1,4 @@
+module.exports = {
+  mongoURI: "mongodb+srv://herokuapp:herokuheroku@cluster0.9wgo1.mongodb.net/hernocdashboard?retryWrites=true&w=majority",
+  secretOrKey: "secret"
+};
