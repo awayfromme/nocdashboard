@@ -65,7 +65,7 @@ class emanot extends React.Component {
       wordWrapEnabled={true}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="enabled" 
@@ -82,7 +82,7 @@ class emanot extends React.Component {
       wordWrapEnabled={true}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="recipients" 
@@ -99,7 +99,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="maind" 
@@ -117,7 +117,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="mainhs" 
@@ -134,7 +134,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="mainhe" 
@@ -151,7 +151,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="mainms" 
@@ -168,7 +168,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="mainme" 
@@ -185,7 +185,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="ETAH" 
@@ -202,7 +202,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="ETAM" 
@@ -219,7 +219,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="loc" 
@@ -236,7 +236,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="utc" 
@@ -252,7 +252,7 @@ class emanot extends React.Component {
       width={600}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="circu" 
@@ -268,7 +268,7 @@ class emanot extends React.Component {
       width={400}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} 
         />
       <Column 
@@ -286,7 +286,7 @@ class emanot extends React.Component {
       width={400}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="chk24" 
@@ -303,7 +303,7 @@ class emanot extends React.Component {
       width={400}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="chk24" 
@@ -320,7 +320,7 @@ class emanot extends React.Component {
       width={400}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="chk5mas" 
@@ -337,7 +337,7 @@ class emanot extends React.Component {
       width={400}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="logo1" 
@@ -354,7 +354,7 @@ class emanot extends React.Component {
       width={400}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="logo2" 
@@ -372,7 +372,7 @@ class emanot extends React.Component {
       height={200}
       columnAutoWidth={false}>
       <Editing
-        mode="batch"
+        mode="cell"
         allowUpdating={true} />
       <Column 
       dataField="mdes" 
