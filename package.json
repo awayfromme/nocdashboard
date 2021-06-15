@@ -4,13 +4,12 @@
   "description": "noc dashboard",
   "main": "server.js",
   "scripts": {
+    "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "full-install": "npm install && npm install --prefix client"
+    "server": "node server.js",
+    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
   },
   "author": "awayfromme",
   "license": "MIT",
@@ -22,6 +21,7 @@
     "concurrently": "^4.0.1",
     "cors": "^2.8.5",
     "d3-time-format": "^3.0.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "is-empty": "^1.2.0",
     "jqwidgets-scripts": "^11.1.3",
