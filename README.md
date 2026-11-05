@@ -1,61 +1,70 @@
 # NOC Dashboard
 
-Dashboard web per organizzare attività di un Network Operations Center: turni, calendario, notifiche di manutenzione, link utili, file e grafici.
+A web dashboard for Network Operations Center workflows, including a shift calendar, task reports, maintenance notifications, helpful links, file management, and monitoring widgets.
 
-## Requisiti
+## Requirements
 
-- Node.js 20.19 o successivo e npm
-- MongoDB raggiungibile dall'applicazione
-- Per la funzione File Manager, il servizio Syncfusion configurato e raggiungibile (l'URL attuale è `http://localhost:8090/`)
+- Node.js 20.19 or newer and npm
+- A reachable MongoDB instance (the current backend still uses MongoDB)
+- The Syncfusion File Manager service for the file browser; its current URL is `http://localhost:8090/`
 
-## Avvio in locale
+## Local development
 
-1. Clona il repository e apri la cartella del progetto.
-2. Copia `.env.example` in `.env`.
-3. Imposta i valori privati descritti sotto.
-4. Installa dipendenze backend: `npm install`.
-5. Installa dipendenze frontend: `npm run install-client`.
-6. Avvia backend e frontend insieme: `npm run develop`.
-7. Apri `http://localhost:3000`.
+1. Copy `.env.example` to `.env`.
+2. Set the private values listed below.
+3. Install backend dependencies: `npm install`.
+4. Install frontend dependencies: `npm run install-client`.
+5. Start the backend and frontend: `npm run develop`.
+6. Open `http://localhost:3000`.
 
-Il backend Express usa la porta 5000; in sviluppo il frontend inoltra le chiamate API al backend tramite il proxy di Create React App.
+The Express API listens on port `5000` by default. Create React App proxies local API requests to it during development.
 
-## Configurazione
+## Environment variables
 
-| Variabile | Obbligatoria | Descrizione |
+| Variable | Required | Description |
 | --- | --- | --- |
-| `MONGODB_CONNECTION_STRING` | Sì | URI di connessione a MongoDB. |
-| `SECRETORKEY` | Sì | Segreto lungo e casuale usato per firmare i token di sessione. |
-| `REGISTRATION_INVITE_CODE` | Sì | Codice richiesto per registrare un nuovo account. |
-| `PORT` | No | Porta HTTP del backend, predefinita `5000`. |
+| `MONGODB_CONNECTION_STRING` | Yes | MongoDB connection URI. |
+| `SECRETORKEY` | Yes | A long, random secret used to sign session tokens. |
+| `REGISTRATION_INVITE_CODE` | Yes | Invitation code required to register an account. |
+| `PORT` | No | Backend HTTP port; defaults to `5000`. |
 
-Non inserire mai segreti nel repository. `.env` è ignorato da Git; in produzione configura le variabili nell'ambiente del provider di hosting.
+Never commit `.env`, database exports, or credentials. `.env` is ignored by Git. Configure production values in your hosting provider's environment settings.
 
-## Comandi
+## Authentication and data
 
-- `npm run server` avvia solo il backend.
-- `npm run start --prefix client` avvia solo il frontend.
-- `npm run build` crea la build statica in `client/build`.
-- `npm run install-client` installa i pacchetti frontend con la risoluzione peer usata dal progetto.
+Registration is protected by the invitation code. Data API routes require a valid bearer token, which the frontend sends after login. Keep `SECRETORKEY` and `REGISTRATION_INVITE_CODE` private and rotate them if exposed.
 
-## Database
+## Database direction
 
-La versione attuale usa MongoDB per utenti, turni, attività, notifiche, link e configurazioni. Se il servizio MongoDB attuale non è più disponibile, la direzione consigliata è PostgreSQL gestito (ad esempio Supabase) con accesso dal solo backend Express tramite `pg`; non serve spostare l'autenticazione su Supabase. Prima del cambio occorre verificare se il database esistente è recuperabile, esportare i dati e importare utenti e record mantenendo ID e riferimenti. La migrazione dello schema e dei dati non è ancora implementata: fino ad allora il server richiede `MONGODB_CONNECTION_STRING`.
+The current version stores users, shifts, tasks, notifications, links, and settings in MongoDB. The recommended direction is managed PostgreSQL (for example, Supabase) accessed only by the Express backend through `pg`. This does not require moving authentication to Supabase. The schema and data migration have not been implemented yet; until then, the server requires `MONGODB_CONNECTION_STRING`.
 
-## Accesso e dati
+## Commands
 
-La registrazione è protetta dal codice invito. Le API che leggono o modificano dati richiedono un token bearer valido; l'interfaccia lo invia dopo il login. Conserva `SECRETORKEY` e `REGISTRATION_INVITE_CODE` privati e sostituiscili se vengono esposti.
+- `npm run server` starts only the backend.
+- `npm run start --prefix client` starts only the frontend.
+- `npm run build` creates the production frontend in `client/build`.
+- `npm run install-client` installs frontend dependencies using the project's peer dependency settings.
 
-## Contribuire
+## Project structure
 
-Le contribuzioni sono benvenute: segnalazioni, documentazione, accessibilità, correzioni e nuove funzionalità. Consulta [CONTRIBUTING.md](CONTRIBUTING.md) per setup e indicazioni sulle pull request. Evita di includere credenziali, `.env`, dump del database o dati operativi reali.
+- `server.js`, `config/`, `routes/`, `models/`: Express server, authentication, API routes, and MongoDB models.
+- `client/src/`: React application, screens, and styles.
+- `validation/`, `helpers/`: input validation and shared server helpers.
 
-## Struttura
+## Contributing
 
-- `server.js`, `config/`, `routes/`, `models/`: server Express, autenticazione, API e modelli MongoDB.
-- `client/src/`: applicazione React, schermate e stili.
-- `validation/`, `helpers/`: validazione degli input e funzioni condivise.
+Contributions are welcome, including bug reports, documentation, accessibility improvements, and focused features. See [CONTRIBUTING.md](CONTRIBUTING.md) for development and pull request guidelines. Do not include credentials, `.env` files, database dumps, or real operational data in issues or pull requests.
 
-## Deploy
+## Versioning and releases
 
-Imposta le variabili d'ambiente sul provider, installa le dipendenze e genera la build frontend. Lo script `heroku-postbuild` installa anche le dipendenze client e crea la build per ambienti che supportano il lifecycle Heroku. Verifica che MongoDB e il servizio file siano raggiungibili dal server distribuito.
+The project follows [Semantic Versioning](https://semver.org/). The root `package.json` version is the source of truth, and each published release uses a matching Git tag prefixed with `v` (for example, package version `1.2.3` is released as tag `v1.2.3`).
+
+- **Patch** (`1.2.3` → `1.2.4`): backward-compatible bug fixes and security updates.
+- **Minor** (`1.2.3` → `1.3.0`): backward-compatible features.
+- **Major** (`1.2.3` → `2.0.0`): breaking changes to APIs, configuration, or user workflows.
+
+Create releases from `main` after the changes are merged and the production build and dependency audit have been checked. A release should include a short summary of user-facing changes, required configuration or migration steps, and known limitations. For a new patch release, run `npm version patch` from the repository root; use `npm version minor` or `npm version major` when appropriate. Review the generated version commit and tag before pushing them, then publish a GitHub Release for that tag.
+
+## Deployment
+
+Set the environment variables on the hosting provider, install dependencies, and build the frontend. `heroku-postbuild` installs the client dependencies and generates its production build for Heroku-compatible environments. Ensure MongoDB and the file service can be reached from the deployed server.
