@@ -99,3 +99,11 @@
 **Choice:** Move development, build, proxy, and test execution to Vite 8 and Vitest 5. Rename JSX-bearing modules to `.jsx`, retain extensionless imports, and serve Vite's `client/dist` output from Express.
 
 **Reason:** Remove known high-severity frontend toolchain vulnerabilities without a React or product rewrite.
+
+## 2026-11-05 — Pin jsdom to the Node 20-compatible release line
+
+**Context:** GitHub Actions runs Node 20.19. The current jsdom release loaded an `undici` implementation that could not start a Vitest worker under that runtime.
+
+**Choice:** Use jsdom 26.1.0 for the Vitest environment.
+
+**Reason:** Restore CI compatibility while retaining the Vite/Vitest security update.

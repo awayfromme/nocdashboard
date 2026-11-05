@@ -19,6 +19,7 @@
 - `npm run lint`: passed for backend and frontend.
 - `npm run build`: passed. Sass reports legacy `@import` deprecation warnings and the main JavaScript bundle is about 1.55 MB gzip.
 - `npm audit --audit-level=critical`: passed for backend and frontend. The backend audit still reports four moderate ESLint dependency findings; the frontend audit reports zero vulnerabilities.
+- The first Vite CI run failed because jsdom 31 was incompatible with GitHub's Node 20.19 worker. It is pinned to jsdom 26.1.0; local frontend tests and audit now pass.
 
 ## Blocked
 
