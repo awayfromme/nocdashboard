@@ -79,3 +79,13 @@
 **Choice:** Keep CRA intact, add root ESLint 10 for server/tests, and a small launcher for the client ESLint already installed by CRA.
 
 **Reason:** Add reproducible linting without an app-framework migration.
+
+## 2026-11-05 — Push only the completion branch to trigger CI
+
+**Context:** The Definition of Done requires GitHub Actions, and local checks cannot verify hosted dependency audits.
+
+**Options:** Keep the branch local and leave CI untriggered; or publish the requested feature branch while keeping `main` untouched.
+
+**Choice:** Push `agent/completion` to `origin` and leave the hosted result as a blocker because this environment cannot query the Actions API.
+
+**Reason:** Let GitHub run the committed workflow without changing the default branch.
