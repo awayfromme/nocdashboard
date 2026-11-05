@@ -345,3 +345,116 @@ textarea {
   .dashboard-shortcuts { grid-template-columns: 1fr; }
   .shortcut-card { min-height: 110px; padding: 1rem; }
 }
+
+/* Shared layout for the legacy operational screens. */
+.main-content:not(.dashboard-home) {
+  width: min(1440px, calc(100% - 4rem));
+  min-height: calc(100vh - 70px);
+  margin: 94px auto 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e7edf5;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(28, 48, 78, 0.045);
+  overflow-x: auto;
+}
+
+.main-content:not(.dashboard-home) > p {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.dx-widget,
+.e-control {
+  font-family: inherit;
+}
+
+.dx-datagrid,
+.dx-scheduler {
+  color: #24344d;
+}
+
+.dx-datagrid-headers,
+.dx-datagrid .dx-header-row {
+  background: #f5f8fc;
+  color: #40516b;
+  font-weight: 600;
+}
+
+.dx-datagrid-borders > .dx-datagrid-headers,
+.dx-datagrid-borders > .dx-datagrid-rowsview,
+.dx-datagrid-borders > .dx-datagrid-total-footer {
+  border-color: #e7edf5;
+}
+
+.dx-button:not(.dx-button-mode-text) {
+  border-radius: 8px;
+}
+
+#block-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+#block-container > div {
+  min-width: 0;
+  padding: 0.5rem;
+  overflow: hidden;
+  border: 1px solid #e7edf5;
+  border-radius: 14px;
+  background: #fff;
+}
+
+#block-container iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  border: 0;
+  border-radius: 10px;
+}
+
+.control-section {
+  min-width: 0;
+}
+
+#file {
+  max-width: 100%;
+}
+
+@media (max-width: 800px) {
+  .main-content:not(.dashboard-home) {
+    width: calc(100% - 2rem);
+    margin-top: 88px;
+    padding: 1rem;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  #block-container {
+    grid-template-columns: 1fr;
+  }
+
+  .dx-scheduler {
+    min-width: 680px;
+  }
+}
+
+.page-heading {
+  margin: 0 0 1.4rem;
+}
+
+.page-heading h1 {
+  margin: 0.35rem 0;
+  color: #192841;
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.page-heading > p:last-child {
+  margin: 0;
+  color: #77849a;
+  font-size: 0.9rem;
+}

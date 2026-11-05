@@ -64,15 +64,20 @@ class Calendar extends React.Component {
   render() {
 
     return (
-      <div className="main-content">
+      <main className="main-content">
+        <header className="page-heading">
+          <p className="dashboard-eyebrow">OPERATIONS</p>
+          <h1>Calendario NOC</h1>
+          <p>Pianifica e consulta gli interventi del team.</p>
+        </header>
                   <Scheduler
         dataSource={customDataSource}
         views={views}
         showCurrentTimeIndicator={true}
         defaultCurrentView="day"
         defaultCurrentDate={currentDate}
-        height={2000}
-        width={1300}
+        height={850}
+        width="100%"
         agendaDuration= {1}
         cellDuration={15}
         startDayHour={0}
@@ -86,7 +91,7 @@ class Calendar extends React.Component {
         recurrenceExceptionExpr="RecurrenceException"
         descriptionExpr= "Notes"
         id="AppointmentId"/>
-         </div>
+         </main>
     );
   }
 }

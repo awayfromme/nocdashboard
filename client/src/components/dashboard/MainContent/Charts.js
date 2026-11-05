@@ -12,12 +12,17 @@ class Charts extends Component {
       const  url3 = `https://widget.coinlib.io/widget?type=single_v2&theme=light&coin_id=359&pref_coin_id=1505`
       const  url4 = `https://widget.coinlib.io/widget?type=single_v2&theme=light&coin_id=229&pref_coin_id=1505`
         return (
-            <div className="main-content">
+            <main className="main-content">
+              <header className="page-heading">
+                <p className="dashboard-eyebrow">MONITORING</p>
+                <h1>Grafici</h1>
+                <p>Indicatori e widget di monitoraggio.</p>
+              </header>
                  <div id="block-container">
                 <Draggable>
                 <div id="bloc1">
         <Iframe url= {url1}
-        width= "800"
+        width= "100%"
         height= "400"
         display= "inline"
         />
@@ -26,7 +31,7 @@ class Charts extends Component {
         <Draggable>
                 <div id="bloc2">
         <Iframe url={url2}
-        width= "800"
+        width= "100%"
         height= "400"
         display= "inline"
         />
@@ -35,7 +40,7 @@ class Charts extends Component {
         <Draggable>
                 <div id="bloc2">
         <Iframe url={url3}
-        width= "800"
+        width= "100%"
         height= "400"
         display= "inline"
         />
@@ -44,16 +49,15 @@ class Charts extends Component {
         <Draggable>
                 <div id="bloc2">
         <Iframe url={url4}
-        width= "800"
+        width= "100%"
         height= "400"
         display= "inline"
         />
         </div>
         </Draggable>
         </div>
-</div>
+</main>
         )}
 }
 
 export default Charts;
-  
