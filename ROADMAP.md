@@ -29,7 +29,8 @@ NOC Dashboard gives a small Network Operations team one authenticated workspace 
 - [ ] **P1 — Working screens:** correct broken API field/key mismatches and fixed-width layouts in calendar, task report, notifications, links, and settings; show useful loading/error/empty states.
 - [ ] **P1 — External integrations:** replace the hard-coded `localhost:8090` file-manager endpoint with a configurable service boundary and a local development fallback; make mail-notification status and delivery requirements explicit. Do not claim email/file delivery is working without a configured provider.
 - [ ] **P1 — Database portability:** add a documented migration path from MongoDB to managed PostgreSQL after a reachable target and recoverable source backup are available; keep migrations repeatable and data-preserving.
-- [ ] **P0 — API integration tests:** cover token expiry and unauthenticated access to each data API; add a DB-independent app test harness.`r`n- [ ] **P1 — Lint and formatting:** add reproducible backend/frontend lint commands and fix all project-source findings without suppressing rules broadly.
+- [ ] **P0 — API integration tests:** cover token expiry and unauthenticated access to each data API; add a DB-independent app test harness.
+- [ ] **P1 — Lint and formatting:** add reproducible backend/frontend lint commands and fix all project-source findings without suppressing rules broadly.
 - [ ] **P1 — CI:** add GitHub Actions for clean installs, backend tests, frontend tests, lint, production build, and a critical-severity dependency audit.
 - [ ] **P2 — Product/docs finish:** complete README usage examples, deployment notes for persistent storage and mail, and verify release/version instructions against the actual scripts.
 - [ ] **P2 — TODO audit:** scan tracked source for TODO/FIXME/XXX; remove stale notes or reference a specific unchecked task in this roadmap.
