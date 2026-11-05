@@ -8,6 +8,7 @@
 - Left the legacy project/task API unmounted because its UI is not reachable and its handlers do not enforce project ownership.
 - Aligned notification settings and mail draft fields with the Mongoose schemas; configured the frontend file-service URL through a build-time environment variable.
 - Added backend/client lint scripts and a GitHub Actions workflow for tests, lint, build, and critical dependency audits.
+- Replaced the unmaintained Create React App toolchain with Vite/Vitest, updated DevExtreme, and reduced the frontend audit to zero known vulnerabilities.
 - Updated the English README with setup, configuration, verification, deployment, integration limitations, and a staged database-migration outline.
 - Pushed `agent/completion` to `origin` to trigger the hosted workflow; GitHub reported 25 alerts on the default branch (7 high, 15 moderate, 3 low, no critical alerts).
 
@@ -16,8 +17,8 @@
 - `npm test`: passed, 16 backend tests.
 - `npm run test:client`: passed, one React smoke test.
 - `npm run lint`: passed for backend and frontend.
-- `npm run build`: passed. CRA reports missing `rrule` source maps and a large 1.48 MB main JavaScript bundle; React Router 4 also emits deprecated lifecycle warnings in tests.
-- `npm audit` could not reach the npm registry in this environment. The committed GitHub Actions workflow runs both audits at critical severity.
+- `npm run build`: passed. Sass reports legacy `@import` deprecation warnings and the main JavaScript bundle is about 1.55 MB gzip.
+- `npm audit --audit-level=critical`: passed for backend and frontend. The backend audit still reports four moderate ESLint dependency findings; the frontend audit reports zero vulnerabilities.
 
 ## Blocked
 

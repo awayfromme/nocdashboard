@@ -89,3 +89,13 @@
 **Choice:** Push `agent/completion` to `origin` and leave the hosted result as a blocker because this environment cannot query the Actions API.
 
 **Reason:** Let GitHub run the committed workflow without changing the default branch.
+
+## 2026-11-05 — Replace Create React App with Vite and Vitest
+
+**Context:** The Create React App 5 dependency tree contained multiple high-severity development-server and build-tool alerts with no safe non-breaking remediation.
+
+**Options:** Pin vulnerable transitive packages outside their supported ranges; or replace the unmaintained build/test layer while retaining React 17 and the application code.
+
+**Choice:** Move development, build, proxy, and test execution to Vite 8 and Vitest 5. Rename JSX-bearing modules to `.jsx`, retain extensionless imports, and serve Vite's `client/dist` output from Express.
+
+**Reason:** Remove known high-severity frontend toolchain vulnerabilities without a React or product rewrite.

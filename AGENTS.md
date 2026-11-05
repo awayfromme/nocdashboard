@@ -5,12 +5,12 @@
 - Work only on branch `agent/completion` for this effort. Do not switch to or push `main`.
 - The product goal, priority order, and blockers live in `ROADMAP.md`; record non-trivial choices in `DECISIONS.md`.
 - Backend: Node.js 20.19+, CommonJS, Express, Passport JWT, Mongoose/MongoDB.
-- Frontend: React 17, React Router 4, Redux, Create React App 5, DevExtreme, JavaScript and SCSS.
+- Frontend: React 17, React Router 4, Redux, Vite, Vitest, DevExtreme, JavaScript and SCSS.
 - npm is authoritative. The frontend uses its npm lockfile and `--legacy-peer-deps`; do not regenerate or reintroduce a Yarn lockfile.
 - Keep public API behavior and existing NOC data fields stable unless a roadmap task explicitly changes them and tests cover the change.
 - Do not log request bodies, passwords, tokens, database URLs, or environment values. `.env` files are private; `.env.example` contains placeholders only.
 - Data routes are a shared single-team NOC workspace. Do not mount the legacy project/task endpoints until their UI is restored and owner/team authorization is implemented.
-- JWT lifetime defaults to 12 hours; registration is invite-gated. The client file service URL is compiled from `REACT_APP_FILE_MANAGER_URL` at build time.
+- JWT lifetime defaults to 12 hours; registration is invite-gated. The client file service URL is compiled from `VITE_FILE_MANAGER_URL` at build time.
 - Match surrounding source formatting. Prefer small CommonJS modules on the server and focused React components on the client.
 - Use conventional commits (`feat:`, `fix:`, `test:`, `docs:`, `chore:`) authored as the repository owner; never add a co-author.
 

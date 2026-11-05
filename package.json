@@ -11,7 +11,7 @@
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "test": "node --test test/*.test.js",
-    "test:client": "cd client && npm test -- --watchAll=false --runInBand",
+    "test:client": "cd client && npm test -- --run",
     "lint:server": "eslint app.js server.js config helpers models routes validation test",
     "lint:client": "cd client && npm run lint",
     "lint": "npm run lint:server && npm run lint:client"

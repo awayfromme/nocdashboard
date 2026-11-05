@@ -30,7 +30,7 @@ NOC Dashboard gives a small Network Operations team one authenticated workspace 
 - [x] **P1 — External integrations:** configure the Syncfusion file-service URL through `REACT_APP_FILE_MANAGER_URL`, retain a localhost development default, and document that the mail screen stores drafts but does not deliver email.
 - [ ] **P1 — Database portability:** implement and rehearse a migration from MongoDB to managed PostgreSQL after a reachable target and recoverable source backup are available; keep migrations repeatable and data-preserving.
 - [x] **P0 — API integration tests:** add a database-independent app harness covering health/readiness, auth on all mounted data APIs, expired tokens, login error parity, malformed/oversized requests and JSON 404 responses.
-- [x] **P1 — Lint and formatting:** add reproducible backend/frontend lint commands and pass both without broad rule suppressions.
+- [x] **P1 — Lint and formatting:** add reproducible backend/frontend lint commands and pass both on the Vite/Vitest frontend toolchain.
 - [x] **P1 — CI:** add GitHub Actions for clean installs, backend/frontend tests, lint, production build and critical-severity dependency audits.
 - [x] **P2 — Product/docs finish:** document setup, environment variables, local verification, deployment prerequisites, notification delivery limitations and SemVer releases in the English README.
 - [x] **P2 — TODO audit:** scan tracked application source for TODO/FIXME/XXX; no untracked markers remain. Roadmap references are planning text.
@@ -42,4 +42,4 @@ NOC Dashboard gives a small Network Operations team one authenticated workspace 
 - **Production file and email delivery:** the repository has no supported file-service URL, persistent storage mount, or SMTP credentials. Build configurable interfaces and local/dev behavior, but live delivery remains blocked until deployment values are configured.
 - **Database-backed end-to-end verification:** no safe MongoDB test URI or test dataset is available. Registration persistence, CRUD workflows, and visual behavior against existing operational records cannot be verified locally. The CI suite deliberately avoids connecting to any database.
 - **Hosted CI result:** the branch was pushed and the GitHub Actions run was triggered, but the run result is not observable from this environment because GitHub API access is blocked. Local tests/lint/build pass; verify hosted audit and CI before treating the Definition of Done as met.
-- **Frontend legacy warnings:** React Router 4 still emits deprecated lifecycle warnings, and the `rrule` package ships source maps pointing at missing files. Both are dependency maintenance items; production build succeeds.
+- **Frontend follow-up:** the Vite build succeeds without source-map warnings, but Sass still warns that legacy `@import` directives will be removed in Dart Sass 3.0. The production bundle is also large (about 1.55 MB gzip) and should be code-split in a later performance pass.

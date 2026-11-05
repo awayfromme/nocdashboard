@@ -38,7 +38,7 @@ app.use("/api/link", link);
 app.use("/api", (req, res) => res.status(404).json({ message: "API route not found" }));
 
 if (process.env.NODE_ENV === "production") {
-  const buildPath = path.resolve(__dirname, "client/build");
+  const buildPath = path.resolve(__dirname, "client/dist");
   app.use(express.static(buildPath));
   app.get("*", (req, res) => res.sendFile(path.join(buildPath, "index.html")));
 }

@@ -17,7 +17,7 @@ A web dashboard for Network Operations Center workflows, including a shift calen
 5. Start the backend and frontend: `npm run develop`.
 6. Open `http://localhost:3000`.
 
-The Express API listens on port `5000` by default. Create React App proxies local API requests to it during development.
+The Express API listens on port `5000` by default. Vite proxies local API requests to it during development.
 
 ## Environment variables
 
@@ -29,7 +29,7 @@ The Express API listens on port `5000` by default. Create React App proxies loca
 | `PORT` | No | Backend HTTP port; defaults to `5000`. |
 | `JWT_EXPIRES_IN_SECONDS` | No | Login token lifetime in seconds; defaults to 12 hours. |
 
-The frontend reads `REACT_APP_FILE_MANAGER_URL` from `client/.env` at build time. The tracked `client/.env.example` uses the localhost development service URL.
+The frontend reads `VITE_FILE_MANAGER_URL` from `client/.env` at build time. The tracked `client/.env.example` uses the localhost development service URL.
 
 Never commit `.env`, database exports, or credentials. `.env` is ignored by Git. Configure production values in your hosting provider's environment settings.
 
@@ -47,7 +47,7 @@ Before migration, provision a PostgreSQL target and take a verified MongoDB back
 
 - `npm run server` starts only the backend.
 - `npm run start --prefix client` starts only the frontend.
-- `npm run build` creates the production frontend in `client/build`.
+- `npm run build` creates the production frontend in `client/dist`.
 - `npm run install-client` performs a clean frontend install using the project's peer dependency settings.
 
 ## Verification
@@ -61,7 +61,7 @@ npm run lint
 npm run build
 ```
 
-The backend tests use Node.js' built-in test runner and do not connect to MongoDB. The frontend smoke test runs under Create React App in non-watch mode. The current test environment verifies API guards and validation but cannot verify database-backed persistence.
+The backend tests use Node.js' built-in test runner and do not connect to MongoDB. The frontend smoke test runs under Vitest in non-watch mode. The current test environment verifies API guards and validation but cannot verify database-backed persistence.
 
 ## Project structure
 
@@ -85,4 +85,4 @@ Create releases from `main` after the changes are merged and the production buil
 
 ## Deployment
 
-Set the environment variables on the hosting provider, install dependencies, and build the frontend. `heroku-postbuild` installs the client dependencies and generates its production build for Heroku-compatible environments. Ensure MongoDB and the file service can be reached from the deployed server. Set `REACT_APP_FILE_MANAGER_URL` before building the frontend: Create React App embeds this value in the static bundle. The file manager requires a separately hosted Syncfusion-compatible service; the localhost URL is for development only. The mail screen currently records notification data and does not send email.
+Set the environment variables on the hosting provider, install dependencies, and build the frontend. `heroku-postbuild` installs the client dependencies and generates its production build for Heroku-compatible environments. Ensure MongoDB and the file service can be reached from the deployed server. Set `VITE_FILE_MANAGER_URL` before building the frontend: Vite embeds this value in the static bundle. The file manager requires a separately hosted Syncfusion-compatible service; the localhost URL is for development only. The mail screen currently records notification data and does not send email.
