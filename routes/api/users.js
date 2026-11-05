@@ -16,8 +16,9 @@ const User = require("../../models/User");
 // @desc Register user
 // @access Public
 router.post("/register", async (req, res) => {
+  const body = req.body && typeof req.body === "object" ? req.body : {};
   const configuredInviteCode = process.env.REGISTRATION_INVITE_CODE;
-  const suppliedInviteCode = typeof req.body.inviteCode === "string" ? req.body.inviteCode : "";
+  const suppliedInviteCode = typeof body.inviteCode === "string" ? body.inviteCode : "";
   if (!configuredInviteCode) {
     return res.status(503).json({ inviteCode: "Registration is currently disabled" });
   }
@@ -30,7 +31,7 @@ router.post("/register", async (req, res) => {
 
   // Form validation
 
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = validateRegisterInput(body);
 
   // Check validation
   if (!isValid) {
@@ -38,15 +39,15 @@ router.post("/register", async (req, res) => {
   }
 
   try {
-    const email = req.body.email.trim().toLowerCase();
+    const email = body.email.trim().toLowerCase();
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ email: "Email already exists" });
     }
 
-    const passwordHash = await bcrypt.hash(req.body.password, 12);
+    const passwordHash = await bcrypt.hash(body.password, 12);
     const user = await new User({
-      name: req.body.name.trim(),
+      name: body.name.trim(),
       email,
       password: passwordHash
     }).save();

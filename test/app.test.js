@@ -110,6 +110,20 @@ test("invalid login input is rejected before database access", async () => {
   });
 });
 
+test("registration rejects a request without a JSON body safely", async () => {
+  const previousInviteCode = process.env.REGISTRATION_INVITE_CODE;
+  process.env.REGISTRATION_INVITE_CODE = "test-invite-code";
+
+  try {
+    const response = await fetch(`${baseUrl}/api/users/register`, { method: "POST" });
+    assert.equal(response.status, 403);
+    assert.deepEqual(await response.json(), { inviteCode: "Invitation code is invalid" });
+  } finally {
+    if (previousInviteCode === undefined) delete process.env.REGISTRATION_INVITE_CODE;
+    else process.env.REGISTRATION_INVITE_CODE = previousInviteCode;
+  }
+});
+
 test("unknown API routes return JSON 404 responses", async () => {
   const response = await fetch(`${baseUrl}/api/unknown`);
   assert.equal(response.status, 404);
