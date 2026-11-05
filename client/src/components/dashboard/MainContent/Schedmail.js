@@ -13,6 +13,7 @@ import DataGrid, {
 import 'devextreme-react/text-area';
 import { Item } from 'devextreme-react/form';
 import CustomStore from 'devextreme/data/custom_store';
+import authenticatedFetch from '../../../utils/authenticatedFetch';
 import "./MainContent.scss";
 
 
@@ -113,13 +114,13 @@ function handleErrors(response) {
 const store = new CustomStore({
   key: '_id',
   load: () => {
-    return fetch('/api/mail')
+    return authenticatedFetch('/api/mail')
       .then(handleErrors)
       .then(response => response.json())
       },
   //Insert data
   insert: (values) => {
-      return fetch(`/api/mail/save`, {
+      return authenticatedFetch(`/api/mail/save`, {
           method: 'POST',
           body: JSON.stringify(values),
           headers:{
@@ -129,7 +130,7 @@ const store = new CustomStore({
   },
   //Update Data
   update: (id, values) => {
-      return fetch(`/api/mail/update/${encodeURIComponent(id)}`, {
+      return authenticatedFetch(`/api/mail/update/${encodeURIComponent(id)}`, {
           method: 'PUT',
           body: JSON.stringify(values),
           headers:{
@@ -138,7 +139,7 @@ const store = new CustomStore({
       })
   },
   remove: (id) => {
-    return fetch(`/api/mail/delete/${encodeURIComponent(id)}`, {
+    return authenticatedFetch(`/api/mail/delete/${encodeURIComponent(id)}`, {
         method: 'DELETE',
         headers:{
           'Content-Type': 'application/json'
@@ -178,12 +179,12 @@ class Schedmail extends React.Component {
     });
 }
 getDefaultData() {
-  return fetch("/api/mail")
+  return authenticatedFetch("/api/mail")
       .then(response => response.json())
       .then((data) => {
           return data;
       }) 
-      .catch(() => { throw 'Data Loading Error' });
+      .catch(() => { throw new Error('Data Loading Error'); });
 }
 
 

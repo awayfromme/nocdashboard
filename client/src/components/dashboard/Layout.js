@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 
 
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   withRouter
@@ -34,7 +33,6 @@ class Layout extends Component {
   render() {
 
     let dashboardContent;
- {
       dashboardContent = (
         <>
           <SideNav  />
@@ -51,8 +49,6 @@ class Layout extends Component {
                 exact
                 path="/schedmail"
                 component={Schedmail}
-                class="dropbtn"
-                onclick= "MyFunction()"
               />
                  <Route
                 exact
@@ -97,14 +93,11 @@ class Layout extends Component {
           </div>
         </>
       );
-    } 
-     
+
 
     return (
       
-      <Router>
-        <div className="wrapper">{dashboardContent}</div>
-      </Router>
+      <div className="wrapper">{dashboardContent}</div>
     );
   }
 }

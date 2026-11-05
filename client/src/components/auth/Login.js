@@ -121,7 +121,6 @@ class Login extends Component {
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
                 autoComplete="current-password"
               />
               <div className="auth-error">

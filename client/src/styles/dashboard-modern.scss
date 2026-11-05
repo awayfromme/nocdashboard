@@ -1,0 +1,347 @@
+body {
+  background: #f4f7fb;
+  color: #162238;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.wrapper,
+.right {
+  min-width: 0;
+  background: #f4f7fb;
+}
+
+.right {
+  width: calc(100% - 225px);
+}
+
+.top-nav {
+  left: 225px;
+  right: 0;
+  width: auto;
+  min-width: 0;
+  padding: 0 2rem;
+  border-bottom: 1px solid #e7edf5;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 2px 12px rgba(16, 35, 65, 0.04);
+}
+
+.left-top {
+  margin-left: 0;
+  gap: 1rem;
+}
+
+.left-top .brand-header {
+  margin: 0;
+  color: #192841;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.left-top .hamburger-top-menu {
+  display: none;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #243653;
+  cursor: pointer;
+}
+
+.right-top {
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  list-style: none;
+}
+
+.right-top .email {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.right-top .profile {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #e8efff;
+  color: #2855a6;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.right-top .dropdown {
+  top: 3.8rem;
+  right: 1.5rem;
+  min-width: 190px;
+  margin: 0;
+  transform: none;
+  border: 1px solid #e7edf5;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(16, 35, 65, 0.14);
+}
+
+.side {
+  width: 225px;
+  height: 100vh;
+  overflow-y: auto;
+  border: 0;
+  background: #111b2d;
+  box-shadow: 8px 0 24px rgba(13, 27, 48, 0.08);
+}
+
+.side::before {
+  display: block;
+  padding: 1.7rem 1.4rem 2.2rem;
+  color: #f8fafc;
+  content: "NOC  /  DASHBOARD";
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.side .top {
+  position: static;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  padding: 0 0.8rem;
+  border: 0;
+  background: transparent;
+}
+
+.side .top .hamburger-side-menu {
+  display: none;
+}
+
+.side .top > a {
+  display: block;
+  margin: 0.2rem 0;
+  border-radius: 10px;
+  color: #aab7ca;
+  text-decoration: none;
+}
+
+.side .top > a li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0.78rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+}
+
+.side .top > a li:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+
+.side .top > a li .icon {
+  width: 20px;
+  padding: 0;
+  margin: 0;
+  color: #91a2bc;
+  font-size: 19px;
+}
+
+.side .top > a.active-page {
+  background: #263b60;
+  color: #fff !important;
+}
+
+.side .top > a.active-page li .icon {
+  color: #91b9ff;
+}
+
+.side .top .sign-out {
+  margin: 1rem 0;
+  padding: 0;
+  color: #aab7ca;
+}
+
+.side .top .sign-out li {
+  margin: 0;
+  padding: 0.78rem 0.85rem;
+  border-radius: 10px;
+}
+
+.side .top .sign-out li:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+
+.main-content {
+  background: transparent;
+}
+
+.dashboard-home {
+  width: min(1180px, calc(100% - 5rem));
+  margin: 112px auto 3rem;
+}
+
+.dashboard-welcome {
+  display: flex;
+  min-height: 220px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.8rem 3rem;
+  overflow: hidden;
+  border-radius: 22px;
+  background: radial-gradient(circle at 90% 15%, rgba(90, 150, 255, 0.27), transparent 25%), linear-gradient(115deg, #14223a, #203d68);
+  box-shadow: 0 20px 45px rgba(30, 58, 99, 0.16);
+  color: #fff;
+}
+
+.dashboard-eyebrow {
+  margin: 0;
+  color: #a9c9ff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.dashboard-welcome h1 {
+  margin: 0.65rem 0 0.5rem;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.dashboard-intro {
+  margin: 0;
+  color: #c1cde0;
+  font-size: 0.98rem;
+}
+
+.welcome-symbol {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(218, 232, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #dbeafe;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #60d6a6;
+  box-shadow: 0 0 0 4px rgba(96, 214, 166, 0.14);
+}
+
+.dashboard-links {
+  margin-top: 2.5rem;
+}
+
+.dashboard-section-heading {
+  margin-bottom: 1.1rem;
+}
+
+.dashboard-section-heading h2 {
+  margin: 0;
+  color: #192841;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.dashboard-section-heading p {
+  margin: 0.35rem 0 0;
+  color: #77849a;
+  font-size: 0.86rem;
+}
+
+.dashboard-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.shortcut-card {
+  display: flex;
+  min-height: 125px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.3rem 1.4rem;
+  border: 1px solid #e7edf5;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(28, 48, 78, 0.035);
+  text-decoration: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.shortcut-card:hover {
+  transform: translateY(-3px);
+  border-color: #c8d8f1;
+  box-shadow: 0 12px 28px rgba(28, 48, 78, 0.09);
+}
+
+.shortcut-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  border-radius: 14px;
+}
+
+.shortcut-icon .material-icons { font-size: 23px; }
+.shortcut-icon.blue { background: #e8f0ff; color: #3874db; }
+.shortcut-icon.green { background: #e5f7ef; color: #2b9b6a; }
+.shortcut-icon.violet { background: #f0eaff; color: #7957c8; }
+.shortcut-icon.amber { background: #fff2dc; color: #bd7b1d; }
+
+.shortcut-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.shortcut-copy strong { color: #1c2c45; font-size: 0.95rem; }
+.shortcut-copy > span { max-width: 340px; color: #77849a; font-size: 0.8rem; line-height: 1.5; }
+.shortcut-arrow { color: #9aa8bc; font-size: 19px; transition: transform 0.18s ease; }
+.shortcut-card:hover .shortcut-arrow { transform: translateX(3px); color: #3874db; }
+
+@media (max-width: 800px) {
+  .right { width: 100%; margin-left: 0; }
+  .top-nav { left: 0; padding: 0 1rem; }
+  .left-top .hamburger-top-menu { display: inline-grid; place-items: center; }
+  .right-top .email { display: none; }
+  .side { z-index: 1100; transform: translateX(-100%); transition: transform 0.2s ease; }
+  .side.is-open { transform: translateX(0); }
+  .dashboard-home { width: calc(100% - 2rem); margin-top: 96px; }
+  .dashboard-welcome { min-height: 195px; padding: 2rem 1.5rem; }
+  .welcome-symbol { display: none; }
+}
+
+@media (max-width: 560px) {
+  .dashboard-shortcuts { grid-template-columns: 1fr; }
+  .shortcut-card { min-height: 110px; padding: 1rem; }
+}

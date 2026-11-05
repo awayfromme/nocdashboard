@@ -1,35 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const cors = require('cors');
+const passport = require('passport');
 const Mail = require('../../models/Mail');
 
-
-
-router.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods: *");
-    next();
-  });
-  
-
+router.use(passport.authenticate('jwt', { session: false }));
 
 // Routes
 
 //GET DATA
-router.get('/', cors(), (req, res, next) => {
+router.get('/', (req, res) => {
 
     Mail.find({  })
         .then((data) => {
-            console.log('Data: ', data);
             res.json( data);
         })
-        .catch((error) => {
-            console.log('error: ', error);
-        });
+        .catch(() => res.status(500).json({ msg: 'Unable to load data' }));
 });
 // SAVE DATA
-router.post('/save', cors(), (req, res, next) => {
+router.post('/save', async (req, res) => {
     const data = {
         send: req.body.send,
         des: req.body.des,
@@ -54,39 +42,42 @@ router.post('/save', cors(), (req, res, next) => {
 
     const newMail = new Mail (data);
 
-    newMail.save((error) => {
-        if (error) {
-            res.status(500).json({ msg: 'Sorry, internal server errors' });
-            return;
-        }
-      
-        return res.json({
-            msg: 'Your data has been saved!!!!!!'
-        });
-    });
+    try {
+      const savedMail = await newMail.save();
+      return res.status(201).json(savedMail);
+    } catch (error) {
+      return res.status(400).json({ msg: 'Unable to save record' });
+    }
 });
 
 //DELETE DATA
-router.delete('/delete/:id',cors(), function(req, res, next) {
-  
-    const deletedMail = Mail.remove();
-
-    deletedMail.remove({_id: req.params.id},function(err,Mail) {
-      console.log("Deleting Mail " + req.params.id);
-      res.json(Mail);
-    })
+router.delete('/delete/:id', async (req, res) => {
+    try {
+      const deletedMail = await Mail.findByIdAndDelete(req.params.id);
+      if (!deletedMail) return res.status(404).json({ msg: 'Record not found' });
+      return res.json(deletedMail);
+    } catch (error) {
+      return res.status(400).json({ msg: 'Unable to delete record' });
+    }
   });
 
 
 //UPDATE DATA
-router.put("/update/:id", (req,res) => { 
+router.put("/update/:id", async (req, res) => {
+    const fields = ['send', 'des', 'Sub', 'd1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'imp', 'Start', 'complete', 'loc', 'notes', 'week', 'day', 'started', 'when'];
+    const updates = fields.reduce((data, field) => {
+      if (req.body[field] !== undefined) data[field] = req.body[field];
+      return data;
+    }, {});
 
-    Mail.findByIdAndUpdate(req.params.id, req.body, function (err, Mail) {
-
-        if (err) return next(err);
-        res.json(Mail);
-       });
-      });
+    try {
+      const mail = await Mail.findByIdAndUpdate(req.params.id, { $set: updates }, { new: true, runValidators: true });
+      if (!mail) return res.status(404).json({ msg: 'Record not found' });
+      return res.json(mail);
+    } catch (error) {
+      return res.status(400).json({ msg: 'Unable to update record' });
+    }
+  });
  
 
 

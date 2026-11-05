@@ -1,18 +1,18 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("http://localhost:5000/api/users/register", userData)
+    .post("/api/users/register", userData)
     .then(res => history.push("/"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response ? err.response.data : { message: "Server non raggiungibile" }
       })
     );
 };
@@ -20,7 +20,7 @@ export const registerUser = (userData, history) => dispatch => {
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios
-    .post("http://localhost:5000/api/users/login", userData)
+    .post("/api/users/login", userData)
     .then(res => {
       // Save to localStorage
 
@@ -30,14 +30,14 @@ export const loginUser = userData => dispatch => {
       // Set token to Auth header
       setAuthToken(token);
       // Decode token to get user data
-      const decoded = jwt_decode(token);
+      const decoded = jwtDecode(token.replace(/^Bearer\s+/i, ""));
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response ? err.response.data : { message: "Server non raggiungibile" }
       })
     );
 };

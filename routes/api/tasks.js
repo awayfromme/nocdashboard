@@ -45,7 +45,8 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Task.findById(req.params.id).then(task => {
-      task.remove().then(() => res.json({ success: true }));
+      if (!task) return res.status(404).json({ success: false });
+      task.deleteOne().then(() => res.json({ success: true }));
     });
   }
 );

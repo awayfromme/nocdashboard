@@ -2,6 +2,7 @@
 import React from 'react';
 import DataGrid, { Column, Editing,} from 'devextreme-react/data-grid';
 import CustomStore from 'devextreme/data/custom_store';
+import authenticatedFetch from '../../../utils/authenticatedFetch';
 import "./MainContent.scss";
 
 
@@ -16,13 +17,13 @@ function handleErrors(response) {
 const store = new CustomStore({
   key: '_id',
   load: () => {
-    return fetch('/api/link')
+    return authenticatedFetch('/api/link')
       .then(handleErrors)
       .then(response => response.json())
       },
   //Insert data
   insert: (values) => {
-      return fetch('/api/link/save', {
+      return authenticatedFetch('/api/link/save', {
           method: 'POST',
           body: JSON.stringify(values),
           headers:{
@@ -32,7 +33,7 @@ const store = new CustomStore({
   },
   //Update Data
   update: (id, values) => {
-      return fetch(`api/link/update/${encodeURIComponent(id)}`, {
+      return authenticatedFetch(`/api/link/update/${encodeURIComponent(id)}`, {
           method: 'PUT',
           body: JSON.stringify(values),
           headers:{
@@ -41,7 +42,7 @@ const store = new CustomStore({
       })
   },
   remove: (id) => {
-    return fetch(`api/link/delete/${encodeURIComponent(id)}`, {
+    return authenticatedFetch(`/api/link/delete/${encodeURIComponent(id)}`, {
         method: 'DELETE',
         headers:{
           'Content-Type': 'application/json'

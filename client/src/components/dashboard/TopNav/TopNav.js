@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../../actions/authActions";
 import { Link, withRouter } from "react-router-dom";
 import Clock from "./Clock"
-require ("./TopNav.scss");
+import "./TopNav.scss";
 
 class TopNav extends Component {
   state = {
@@ -37,17 +37,8 @@ class TopNav extends Component {
 
   // Show Side Nav
   toggleMenu = e => {
-    let sideNav = document.querySelector(".side");
-    sideNav.classList.remove("invisibile");
-
-    let hamburger = document.querySelector(".hamburger-top-menu");
-    hamburger.classList.remove("hamburger-visible");
-
-    let rightSide = document.querySelector(".right");
-    rightSide.classList.remove("no-side");
-
-    let rightSideRight = document.querySelector(".right-top");
-    rightSideRight.classList.remove("right-top-visibile");
+    const sideNav = document.querySelector(".side");
+    if (sideNav) sideNav.classList.toggle("is-open");
   };
 
   render() {

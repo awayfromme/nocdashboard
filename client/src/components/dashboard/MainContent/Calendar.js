@@ -3,6 +3,7 @@ import * as React from 'react';
 import Scheduler  from 'devextreme-react/scheduler';
 
 import CustomStore from 'devextreme/data/custom_store';
+import authenticatedFetch from '../../../utils/authenticatedFetch';
 
 import "./MainContent.scss";
 
@@ -19,13 +20,13 @@ function handleErrors(response) {
 const customDataSource = new CustomStore({
   key: '_id',
   load: () => {
-    return fetch('/api/blogpost')
+    return authenticatedFetch('/api/blogpost')
       .then(handleErrors)
       .then(response => response.json());
   },
   //Insert data
   insert: (values) => {
-      return fetch('/api/blogpost/save', {
+      return authenticatedFetch('/api/blogpost/save', {
           method: 'POST',
           body: JSON.stringify(values),
           headers:{
@@ -35,7 +36,7 @@ const customDataSource = new CustomStore({
   },
 //Remove data
   remove: (id) => {
-      return fetch(`api/blogpost/delete/${encodeURIComponent(id)}`, {
+      return authenticatedFetch(`/api/blogpost/delete/${encodeURIComponent(id)}`, {
           method: 'DELETE',
           headers:{
             'Content-Type': 'application/json'
@@ -44,7 +45,7 @@ const customDataSource = new CustomStore({
   },
   //Update Data
   update: (id, values) => {
-      return fetch(`api/blogpost/update/${encodeURIComponent(id)}`, {
+      return authenticatedFetch(`/api/blogpost/update/${encodeURIComponent(id)}`, {
           method: 'PUT',
           body: JSON.stringify(values),
           headers:{

@@ -31,6 +31,7 @@ class Register extends Component {
       name: "",
       email: "",
       password: "",
+      inviteCode: "",
       errors: {}
     };
   }
@@ -60,7 +61,8 @@ class Register extends Component {
     const newUser = {
       name: this.state.name,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      inviteCode: this.state.inviteCode
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -87,7 +89,6 @@ class Register extends Component {
                 margin="normal"
                 required
                 fullWidth
-                id="name"
                 label="Name"
                 name="name"
                 autoComplete="name"
@@ -96,7 +97,6 @@ class Register extends Component {
               <div className="auth-error">
                 {errors.name}
                 </div>
-        <div className="form" noValidate onSubmit={this.onSubmit}>
               <div>Email address</div>
               <TextField
                 onChange={this.onChange}
@@ -114,7 +114,6 @@ class Register extends Component {
                 autoComplete="email"
                 autoFocus
               />
-                  </div>
               <div className="auth-error">
                 {errors.email}
                 </div>
@@ -132,12 +131,28 @@ class Register extends Component {
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
                 autoComplete="current-password"
               />
               <div className="auth-error">
                 {errors.password}
                 </div>
+              <div>Invitation code</div>
+              <TextField
+                onChange={this.onChange}
+                value={this.state.inviteCode}
+                error={Boolean(errors.inviteCode)}
+                id="inviteCode"
+                type="password"
+                className="auth-input"
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                label="Invitation code"
+                name="inviteCode"
+                autoComplete="off"
+              />
+              <div className="auth-error">{errors.inviteCode}</div>
                 <div>
             <Button
              type="submit" 

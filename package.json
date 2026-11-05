@@ -5,35 +5,29 @@
   "main": "server.js",
   "scripts": {
     "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
+    "install-client": "cd client && npm install --legacy-peer-deps",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "node server.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
   },
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "author": "awayfromme",
   "license": "MIT",
   "dependencies": {
-    "@devexpress/dx-react-core": "^2.7.4",
-    "@syncfusion/ej2-filemanager-node-filesystem": "^18.1.54",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "concurrently": "^4.0.1",
-    "cors": "^2.8.5",
-    "d3-time-format": "^3.0.0",
+    "concurrently": "^10.0.6",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "is-empty": "^1.2.0",
-    "jqwidgets-scripts": "^11.1.3",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.11.16",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.12.0",
     "morgan": "^1.10.0",
-    "node-sass": "^5.0.0",
-    "passport": "^0.4.0",
+    "passport": "^0.7.0",
     "passport-jwt": "^4.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "validator": "^10.9.0"
+    "validator": "^13.15.35"
   },
   "devDependencies": {}
 }

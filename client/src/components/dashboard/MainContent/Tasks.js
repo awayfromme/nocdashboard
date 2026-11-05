@@ -10,6 +10,7 @@ import DataGrid, {
   import SelectBox from 'devextreme-react/select-box';
 import { Button } from 'devextreme-react/button';
 import CustomStore from 'devextreme/data/custom_store';
+import authenticatedFetch from '../../../utils/authenticatedFetch';
 import 'devextreme-react/text-area';
 import  jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -37,18 +38,6 @@ var today = (formatDate(new Date ())); // 2020-12-19 (today as it needs)
 
 
 
-function formatTime(date) {
-  var d = new Date(date),
-      minutes = '' + d.getMinutes(),
-      hours = '' + (d.getHours());
-
-  if (minutes.length < 2) 
-      minutes = '0' + minutes;
-  if (hours.length < 2) 
-      hours = '0' + hours;
-  return [hours, minutes].join(':');
-}
-
 var shift = ""
 
 
@@ -75,7 +64,7 @@ function submitGrid() {
   var date = d.getDate();
   var month = d.getMonth();
   var year = d.getFullYear();
-var newdat = year.toString() + (month + 1).toString() + date.toString() + "_" + "Shift_Report@" + hr + ":" + min + ampm 
+var newdat = `${year}${String(month + 1).padStart(2, "0")}${String(date).padStart(2, "0")}_Shift_Report@${hr}-${min}${ampm}`;
   doc.addImage(myImage, 'PNG', 14, 3, 15, 10);
   doc.text("NOC Tasks Sheet", 75, 10);
   exportDataGridToPdf({
@@ -112,7 +101,7 @@ ampm = "pm";
 var date = d.getDate();
 var month = d.getMonth() + 1;
 var year = d.getFullYear();
-var newdat = year.toString() + month.toString() + date.toString() + "_" + "Shift_Report@" + hr + ":" + min + ampm 
+var newdat = `${year}${String(month + 1).padStart(2, "0")}${String(date).padStart(2, "0")}_Shift_Report@${hr}-${min}${ampm}`;
 doc.addImage(myImage, 'PNG', 14, 3, 15, 10);
 doc.text("NOC Tasks Sheet", 75, 10);
 exportDataGridToPdf({
@@ -136,13 +125,13 @@ function handleErrors(response) {
 const store = new CustomStore({
   key: '_id',
   load: () => {
-    return fetch('/api/blogpost')
+    return authenticatedFetch('/api/blogpost')
       .then(handleErrors)
       .then(response => response.json())
       },
   //Insert data
   insert: (values) => {
-      return fetch('/api/blogpost/save', {
+      return authenticatedFetch('/api/blogpost/save', {
           method: 'POST',
           body: JSON.stringify(values),
           headers:{
@@ -152,7 +141,7 @@ const store = new CustomStore({
   },
   //Update Data
   update: (id, values) => {
-      return fetch(`/api/blogpost/update/${encodeURIComponent(id)}`, {
+      return authenticatedFetch(`/api/blogpost/update/${encodeURIComponent(id)}`, {
           method: 'PUT',
           body: JSON.stringify(values),
           headers:{
@@ -162,7 +151,7 @@ const store = new CustomStore({
   },
 //Remove data
 remove: (id) => {
-  return fetch(`api/blogpost/delete/${encodeURIComponent(id)}`, {
+  return authenticatedFetch(`/api/blogpost/delete/${encodeURIComponent(id)}`, {
       method: 'DELETE',
       headers:{
         'Content-Type': 'application/json'

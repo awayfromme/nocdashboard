@@ -2,7 +2,6 @@ require("dotenv").config()
 const log = console.log;
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 const morgan = require("morgan");
@@ -16,35 +15,13 @@ const app = express();
 
 
 
-app.use(function(req, res, next) {
-res.header("Access-Control-Allow-Origin", "*");
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-next();
-})
+app.use(morgan('tiny'));
 
+if (!process.env.MONGODB_CONNECTION_STRING || !process.env.SECRETORKEY) {
+  throw new Error("MONGODB_CONNECTION_STRING and SECRETORKEY must be configured");
+}
 
-
-// Bodyparser middleware
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
-app.use(bodyParser.json());
-
-// Connect to MongoDB
-mongoose.connect(
-  process.env.MONGODB_CONNECTION_STRING,
-       { useNewUrlParser: true,
-         useUnifiedTopology: true 
-       }
-  )
-  .then(() => console.log("MongoDB successfully connected"))
-  .catch(err => console.log(err));
-
-//Data Parsing
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
 
 
 // Passport middleware
@@ -69,10 +46,15 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.use(morgan('tiny'));
-
-
-
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+mongoose
+  .connect(process.env.MONGODB_CONNECTION_STRING)
+  .then(() => {
+    console.log("MongoDB successfully connected");
+    app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+  })
+  .catch(() => {
+    console.error("MongoDB connection failed");
+    process.exit(1);
+  });

@@ -111,7 +111,8 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Project.findById(req.params.id).then(project => {
-      project.remove().then(() => res.json({ success: true }));
+      if (!project) return res.status(404).json({ success: false });
+      project.deleteOne().then(() => res.json({ success: true }));
     });
   }
 );

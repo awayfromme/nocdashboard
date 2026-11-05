@@ -2,7 +2,7 @@ import React, { Component} from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../actions/authActions";
-require ("./SideNav.css");
+import "./SideNav.scss";
 
 
 

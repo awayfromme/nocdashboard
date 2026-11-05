@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const passport = require("passport");
+const { timingSafeEqual } = require("crypto");
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -15,7 +15,19 @@ const User = require("../../models/User");
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
+  const configuredInviteCode = process.env.REGISTRATION_INVITE_CODE;
+  const suppliedInviteCode = typeof req.body.inviteCode === "string" ? req.body.inviteCode : "";
+  if (!configuredInviteCode) {
+    return res.status(503).json({ inviteCode: "Registration is currently disabled" });
+  }
+
+  const expectedCode = Buffer.from(configuredInviteCode);
+  const receivedCode = Buffer.from(suppliedInviteCode);
+  if (expectedCode.length !== receivedCode.length || !timingSafeEqual(expectedCode, receivedCode)) {
+    return res.status(403).json({ inviteCode: "Invitation code is invalid" });
+  }
+
   // Form validation
 
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -25,29 +37,31 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
-    if (user) {
+  try {
+    const email = req.body.email.trim().toLowerCase();
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
       return res.status(400).json({ email: "Email already exists" });
-    } else {
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-      });
-
-      // Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
-        });
-      });
     }
-  });
+
+    const passwordHash = await bcrypt.hash(req.body.password, 12);
+    const user = await new User({
+      name: req.body.name.trim(),
+      email,
+      password: passwordHash
+    }).save();
+
+    return res.status(201).json({
+      id: user.id,
+      name: user.name,
+      email: user.email
+    });
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(400).json({ email: "Email already exists" });
+    }
+    return res.status(500).json({ message: "Unable to register user" });
+  }
 });
 
 
@@ -64,7 +78,7 @@ router.post("/register", (req, res) => {
 // @route POST api/users/login
 // @desc Login user and return JWT token
 // @access Public
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   // Form validation
 
   const { errors, isValid } = validateLoginInput(req.body);
@@ -78,14 +92,15 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   // Find user by email
-  User.findOne({ email }).then(user => {
+  try {
+  const user = await User.findOne({ email: email.trim().toLowerCase() });
     // Check if user exists
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
 
     // Check password
-    bcrypt.compare(password, user.password).then(isMatch => {
+    const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
         // User matched
         // Create JWT Payload
@@ -103,7 +118,10 @@ router.post("/login", (req, res) => {
             expiresIn: 31556926 // 1 year in seconds
           },
           (err, token) => {
-            res.json({
+            if (err) {
+              return res.status(500).json({ message: "Unable to sign in" });
+            }
+            return res.json({
               success: true,
               token: "Bearer " + token
             });
@@ -114,8 +132,9 @@ router.post("/login", (req, res) => {
           .status(400)
           .json({ passwordincorrect: "Password incorrect" });
       }
-    });
-  });
+  } catch (error) {
+    return res.status(500).json({ message: "Unable to sign in" });
+  }
 });
 
 module.exports = router;
