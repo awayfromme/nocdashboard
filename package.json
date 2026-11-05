@@ -5,12 +5,16 @@
   "main": "server.js",
   "scripts": {
     "build": "cd client && npm run build",
-    "install-client": "cd client && npm install --legacy-peer-deps",
+    "install-client": "cd client && npm ci --legacy-peer-deps",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "node server.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "test:client": "cd client && npm test -- --watchAll=false --runInBand",
+    "lint:server": "eslint app.js server.js config helpers models routes validation test",
+    "lint:client": "cd client && npm run lint",
+    "lint": "npm run lint:server && npm run lint:client"
   },
   "engines": {
     "node": ">=20.19.0"
@@ -29,5 +33,9 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.0",
     "validator": "^13.15.35"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0"
   }
 }
