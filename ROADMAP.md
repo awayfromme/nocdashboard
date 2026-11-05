@@ -23,20 +23,23 @@ NOC Dashboard gives a small Network Operations team one authenticated workspace 
 ## Tasks (priority order)
 
 - [x] **P0 — Repository hygiene:** stop tracking the local `client/.env` while preserving the local file; ensure all environment files are ignored except `.env.example`; confirm no credential is added to the branch.
-- [x] **P0 — Test foundation:** add focused Node tests for registration/login validation and fix the frontend test setup. The React smoke test and five backend validation tests pass.
-- [ ] **P0 — Backend reliability:** add a health endpoint, central error handling, request-size limits, consistent validation, and predictable startup/shutdown behavior; mount or retire unreachable project/task API routes based on the actual UI.
-- [ ] **P0 — Security review:** verify authentication on every data endpoint, safe error responses, password limits, duplicate-user handling, and authorization expectations for shared NOC data; add regression tests.
-- [ ] **P1 — Working screens:** correct broken API field/key mismatches and fixed-width layouts in calendar, task report, notifications, links, and settings; show useful loading/error/empty states.
-- [ ] **P1 — External integrations:** replace the hard-coded `localhost:8090` file-manager endpoint with a configurable service boundary and a local development fallback; make mail-notification status and delivery requirements explicit. Do not claim email/file delivery is working without a configured provider.
-- [ ] **P1 — Database portability:** add a documented migration path from MongoDB to managed PostgreSQL after a reachable target and recoverable source backup are available; keep migrations repeatable and data-preserving.
-- [ ] **P0 — API integration tests:** cover token expiry and unauthenticated access to each data API; add a DB-independent app test harness.
-- [ ] **P1 — Lint and formatting:** add reproducible backend/frontend lint commands and fix all project-source findings without suppressing rules broadly.
-- [ ] **P1 — CI:** add GitHub Actions for clean installs, backend tests, frontend tests, lint, production build, and a critical-severity dependency audit.
-- [ ] **P2 — Product/docs finish:** complete README usage examples, deployment notes for persistent storage and mail, and verify release/version instructions against the actual scripts.
-- [ ] **P2 — TODO audit:** scan tracked source for TODO/FIXME/XXX; remove stale notes or reference a specific unchecked task in this roadmap.
-- [ ] **P2 — Final verification:** run the full documented CI command set on this branch, record results, and update `STATUS.md`.
+- [x] **P0 — Test foundation:** add focused Node tests for registration/login validation and fix the frontend test setup. The React smoke test and fifteen backend tests pass.
+- [x] **P0 — Backend reliability:** add health/readiness endpoints, safe central errors, a 1 MB JSON limit, consistent validation, startup checks and graceful shutdown. Keep the disconnected legacy project/task APIs unmounted.
+- [x] **P0 — Security review:** enforce auth on every mounted data API; use generic login failures, 12-hour default JWTs, unique normalized email storage, invite-gated registration, and regression tests. Authenticated users share one NOC workspace by design.
+- [x] **P1 — Working screens:** align notification settings and mail entry fields with MongoDB models, use the Mongo `_id` key, remove the extra database read on new mail drafts, and make settings widths responsive. Other screen behavior still requires validation against the deployment data.
+- [x] **P1 — External integrations:** configure the Syncfusion file-service URL through `REACT_APP_FILE_MANAGER_URL`, retain a localhost development default, and document that the mail screen stores drafts but does not deliver email.
+- [ ] **P1 — Database portability:** implement and rehearse a migration from MongoDB to managed PostgreSQL after a reachable target and recoverable source backup are available; keep migrations repeatable and data-preserving.
+- [x] **P0 — API integration tests:** add a database-independent app harness covering health/readiness, auth on all mounted data APIs, expired tokens, login error parity, malformed/oversized requests and JSON 404 responses.
+- [x] **P1 — Lint and formatting:** add reproducible backend/frontend lint commands and pass both without broad rule suppressions.
+- [x] **P1 — CI:** add GitHub Actions for clean installs, backend/frontend tests, lint, production build and critical-severity dependency audits.
+- [x] **P2 — Product/docs finish:** document setup, environment variables, local verification, deployment prerequisites, notification delivery limitations and SemVer releases in the English README.
+- [x] **P2 — TODO audit:** scan tracked application source for TODO/FIXME/XXX; no untracked markers remain. Roadmap references are planning text.
+- [ ] **P2 — Final verification:** run the hosted dependency audit and confirm a green GitHub Actions result after pushing this branch; record the result in `STATUS.md`.
 
 ## Blocked
 
 - **Production database migration:** repository code uses MongoDB, while the intended replacement is managed PostgreSQL. The source instance's availability, backup, and target database connection are outside this repository. Until these are available, keep MongoDB as the configured runtime and test database-independent behavior; do not run destructive or one-way migrations.
 - **Production file and email delivery:** the repository has no supported file-service URL, persistent storage mount, or SMTP credentials. Build configurable interfaces and local/dev behavior, but live delivery remains blocked until deployment values are configured.
+- **Database-backed end-to-end verification:** no safe MongoDB test URI or test dataset is available. Registration persistence, CRUD workflows, and visual behavior against existing operational records cannot be verified locally. The CI suite deliberately avoids connecting to any database.
+- **Hosted CI result:** the branch's GitHub Actions run is not observable from this local environment. The workflow is committed and the local tests/lint/build pass; verify the hosted audit and CI result when the branch push is available.
+- **Frontend legacy warnings:** React Router 4 still emits deprecated lifecycle warnings, and the `rrule` package ships source maps pointing at missing files. Both are dependency maintenance items; production build succeeds.

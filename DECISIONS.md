@@ -39,3 +39,43 @@
 **Choice:** Preserve the working copy, remove only its Git index entry, and ensure `.env.example` remains tracked.
 
 **Reason:** Keep local setup intact while preventing future environment values from entering commits.
+
+## 2026-11-05 — Retire unreachable project and task API routes
+
+**Context:** The app router does not expose the project screen, and its Redux action modules are absent. Those routes allowed every authenticated user to modify any project's records without ownership checks.
+
+**Options:** Mount the legacy API and preserve inaccessible, insufficiently scoped handlers; or leave it unmounted until its screen and access rules are restored together.
+
+**Choice:** Keep `/api/projects` and `/api/tasks` unmounted and test their 404 response.
+
+**Reason:** Avoid exposing unmaintained handlers and data operations that have no reachable product workflow.
+
+## 2026-11-05 — Use a short default JWT lifetime and generic login failures
+
+**Context:** Login tokens lasted one year, and distinct errors revealed whether an email had an account.
+
+**Options:** Preserve the old token lifetime and errors; or set a configurable 12-hour default and return one generic unauthorized response.
+
+**Choice:** Use `JWT_EXPIRES_IN_SECONDS` with a 12-hour default and identical 401 responses for unknown email and wrong password.
+
+**Reason:** Reduce the exposure window for lost tokens and prevent account enumeration while retaining operator configurability.
+
+## 2026-11-05 — Keep email and file services as explicit external integrations
+
+**Context:** The repository contains no SMTP sender or Syncfusion server implementation.
+
+**Options:** Claim the UI sends mail/files despite no provider; or record drafts, configure the file endpoint, and document the external service requirement.
+
+**Choice:** Keep mail records as drafts with no delivery claim; make the frontend file-service URL configurable before build.
+
+**Reason:** Ensure deployment expectations match code that can be verified in this repository.
+
+## 2026-11-05 — Use ESLint 10 for server code and the installed CRA ESLint for the client
+
+**Context:** The server had no lint runner, while Create React App 5 depends on ESLint 8 and its legacy configuration.
+
+**Options:** Upgrade/eject CRA to share one ESLint version; or run a separate root flat config and invoke the existing CRA ESLint in legacy mode.
+
+**Choice:** Keep CRA intact, add root ESLint 10 for server/tests, and a small launcher for the client ESLint already installed by CRA.
+
+**Reason:** Add reproducible linting without an app-framework migration.

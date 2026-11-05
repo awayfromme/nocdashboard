@@ -9,6 +9,8 @@
 - npm is authoritative. The frontend uses its npm lockfile and `--legacy-peer-deps`; do not regenerate or reintroduce a Yarn lockfile.
 - Keep public API behavior and existing NOC data fields stable unless a roadmap task explicitly changes them and tests cover the change.
 - Do not log request bodies, passwords, tokens, database URLs, or environment values. `.env` files are private; `.env.example` contains placeholders only.
+- Data routes are a shared single-team NOC workspace. Do not mount the legacy project/task endpoints until their UI is restored and owner/team authorization is implemented.
+- JWT lifetime defaults to 12 hours; registration is invite-gated. The client file service URL is compiled from `REACT_APP_FILE_MANAGER_URL` at build time.
 - Match surrounding source formatting. Prefer small CommonJS modules on the server and focused React components on the client.
 - Use conventional commits (`feat:`, `fix:`, `test:`, `docs:`, `chore:`) authored as the repository owner; never add a co-author.
 
@@ -21,6 +23,7 @@
 - Lint: `npm run lint`
 - Production build: `npm run build`
 - Start development servers: `npm run develop`
+- Frontend smoke test: `npm run test:client`
 
 Windows PowerShell can invoke npm scripts with `npm.cmd`. CI should use the same scripts on Node 20.19+.
 
