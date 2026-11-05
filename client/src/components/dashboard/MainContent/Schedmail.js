@@ -163,28 +163,9 @@ class Schedmail extends React.Component {
 
 
   onInitNewRow(e) {
-    e.promise = this.getDefaultData().then(data => {
-        e.data.d1 = false;
-        e.data.d2 = false;
-        e.data.d3 = false;
-        e.data.d4 = false;
-        e.data.d5 = false;
-        e.data.d6 = false;
-        e.data.d7 = false;
-        e.data.d8 = false;
-        e.data.send = false;
-        e.data.week = false;
-        e.data.day = false;
-        e.data.started = false;
+    ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "send", "week", "day", "started"].forEach(field => {
+      e.data[field] = false;
     });
-}
-getDefaultData() {
-  return authenticatedFetch("/api/mail")
-      .then(response => response.json())
-      .then((data) => {
-          return data;
-      }) 
-      .catch(() => { throw new Error('Data Loading Error'); });
 }
 
 
@@ -197,11 +178,11 @@ getDefaultData() {
 <div id="data-grid-demo">
 <DataGrid
 dataSource={store}
-keyExpr="ID"
+keyExpr="_id"
 showBorders={true}
 allowColumnReordering={true}
 RequiredRule
-width={1500}
+width="100%"
 allowColumnResizing={true}
 onInitNewRow={this.onInitNewRow}
 
@@ -214,7 +195,7 @@ allowAdding={true}
 allowUpdating={true}
 allowDeleting={true} 
 >
-<Popup title="Email Informations" showTitle={true} fullScreen={true}  width={1800} resizeEnabled={true} shading={true} height={925}>
+<Popup title="Email Informations" showTitle={true} fullScreen={true} width="100%" resizeEnabled={true} shading={true} height="925">
 <Position my="center" at="center" of={window} />
 </Popup>
 <Form>

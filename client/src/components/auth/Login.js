@@ -42,14 +42,14 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
+  componentDidUpdate(previousProps) {
+    if (!previousProps.auth.isAuthenticated && this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
 
-    if (nextProps.errors) {
+    if (previousProps.errors !== this.props.errors && this.props.errors) {
       this.setState({
-        errors: nextProps.errors
+        errors: this.props.errors
       });
     }
   }
@@ -126,6 +126,7 @@ class Login extends Component {
               <div className="auth-error">
                 {errors.password}
                 {errors.passwordincorrect}
+                {errors.message}
           </div>
           <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

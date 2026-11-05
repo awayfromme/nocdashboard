@@ -62,7 +62,7 @@ class emanot extends React.Component {
       id="gridContainer"
       dataSource={store}
       showBorders={true}
-      width={600}
+      width="100%"
       wordWrapEnabled={true}
       columnAutoWidth={false}>
       <Editing
@@ -79,7 +79,7 @@ class emanot extends React.Component {
       id="gridContainer"
       dataSource={store}
       showBorders={true}
-      width={600}
+      width="100%"
       wordWrapEnabled={true}
       columnAutoWidth={false}>
       <Editing
@@ -97,13 +97,13 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
         allowUpdating={true} />
       <Column 
-      dataField="maind" 
+      dataField="main1d" 
       caption="Day Maintenance" 
       dataType="Time"
       />
@@ -115,13 +115,13 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
         allowUpdating={true} />
       <Column 
-      dataField="mainhs" 
+      dataField="main1hs" 
       caption="Starting Hour Maintenance" 
       />
     </DataGrid>
@@ -132,13 +132,13 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
         allowUpdating={true} />
       <Column 
-      dataField="mainhe" 
+      dataField="main1he" 
       caption="Ending Hour Maintenance" 
       />
     </DataGrid>
@@ -149,13 +149,13 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
         allowUpdating={true} />
       <Column 
-      dataField="mainms" 
+      dataField="main1ms" 
       caption="Starting Minutes Maintenance " 
       />
     </DataGrid>
@@ -166,13 +166,13 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
         allowUpdating={true} />
       <Column 
-      dataField="mainme" 
+      dataField="main1me" 
       caption="Ending Minutes Maintenance" 
       />
     </DataGrid>
@@ -183,7 +183,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
@@ -200,7 +200,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
@@ -217,13 +217,13 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
         allowUpdating={true} />
       <Column 
-      dataField="loc" 
+      dataField="loc1" 
       caption="Location for Maintenance" 
       />
     </DataGrid>
@@ -234,7 +234,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
@@ -250,13 +250,13 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={600}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
         allowUpdating={true} />
       <Column 
-      dataField="circu" 
+      dataField="tables1" 
       caption="Affected Areas-Circuits for Maintenance" 
       />
     </DataGrid><p>Insert planned Affected Areas-Circuits for Maintenance</p>
@@ -266,7 +266,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={400}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
@@ -284,7 +284,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={400}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
@@ -301,13 +301,13 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={400}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
         allowUpdating={true} />
       <Column 
-      dataField="chk24" 
+      dataField="chk1h" 
       dataType="boolean"
       caption="Enable Mail 1 Hour before Maintenance" 
       />
@@ -318,7 +318,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={400}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
@@ -335,7 +335,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={400}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
@@ -352,7 +352,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={400}
+      width="100%"
       columnAutoWidth={false}>
       <Editing
         mode="cell"
@@ -369,7 +369,7 @@ class emanot extends React.Component {
       allowColumnReordering={true}
       showBorders={true}
       wordWrapEnabled={true}
-      width={800}
+      width="100%"
       height={200}
       columnAutoWidth={false}>
       <Editing

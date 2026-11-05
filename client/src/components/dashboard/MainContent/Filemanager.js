@@ -5,7 +5,7 @@ import * as React from 'react';
 export default class Filemanager extends React.Component {
     constructor() {
         super(...arguments);
-        this.hostUrl = "http://localhost:8090/";
+        this.hostUrl = process.env.REACT_APP_FILE_MANAGER_URL || "http://localhost:8090/";
     }
     
     render() {
