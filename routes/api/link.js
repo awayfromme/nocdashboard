@@ -31,7 +31,7 @@ router.post('/save', async (req, res) => {
     try {
       const savedLink = await newLink.save();
       return res.status(201).json(savedLink);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to save record' });
     }
 });
@@ -42,7 +42,7 @@ router.delete('/delete/:id', async (req, res) => {
       const deletedLink = await Link.findByIdAndDelete(req.params.id);
       if (!deletedLink) return res.status(404).json({ msg: 'Record not found' });
       return res.json(deletedLink);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to delete record' });
     }
   });
@@ -60,7 +60,7 @@ router.put("/update/:id", async (req, res) => {
       const link = await Link.findByIdAndUpdate(req.params.id, { $set: updates }, { new: true, runValidators: true });
       if (!link) return res.status(404).json({ msg: 'Record not found' });
       return res.json(link);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to update record' });
     }
   });

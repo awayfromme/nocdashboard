@@ -35,7 +35,7 @@ router.post('/save', async (req, res) => {
     try {
       const savedBlogPost = await newBlogPost.save();
       return res.status(201).json(savedBlogPost);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to save record' });
     }
 });
@@ -46,7 +46,7 @@ router.delete('/delete/:id', async (req, res) => {
       const deletedBlogPost = await BlogPost.findByIdAndDelete(req.params.id);
       if (!deletedBlogPost) return res.status(404).json({ msg: 'Record not found' });
       return res.json(deletedBlogPost);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to delete record' });
     }
   });
@@ -64,7 +64,7 @@ router.put("/update/:id", async (req, res) => {
       const blogPost = await BlogPost.findByIdAndUpdate(req.params.id, { $set: updates }, { new: true, runValidators: true });
       if (!blogPost) return res.status(404).json({ msg: 'Record not found' });
       return res.json(blogPost);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to update record' });
     }
   });

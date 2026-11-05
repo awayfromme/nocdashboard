@@ -29,7 +29,7 @@ router.delete('/delete/:id', async (req, res) => {
       const file = await File.findByIdAndDelete(req.params.id);
       if (!file) return res.status(404).json({ msg: 'Record not found' });
       return res.json(file);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to delete record' });
     }
   });
@@ -47,7 +47,7 @@ router.put("/update/:id", async (req, res) => {
       const file = await File.findByIdAndUpdate(req.params.id, { $set: updates }, { new: true, runValidators: true });
       if (!file) return res.status(404).json({ msg: 'Record not found' });
       return res.json(file);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to update record' });
     }
   });

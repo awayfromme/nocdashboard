@@ -81,7 +81,8 @@ started:
 { type: Boolean,
 default: false
 },
-notes: String
+notes: String,
+ToWho: String
 }
 );
 

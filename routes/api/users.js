@@ -88,15 +88,14 @@ router.post("/login", async (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const email = req.body.email;
   const password = req.body.password;
 
   // Find user by email
   try {
-  const user = await User.findOne({ email: email.trim().toLowerCase() });
+  const user = await User.findOne({ email: req.body.email.trim().toLowerCase() });
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
     // Check password
@@ -115,7 +114,7 @@ router.post("/login", async (req, res) => {
           payload,
           process.env.SECRETORKEY,
           {
-            expiresIn: 31556926 // 1 year in seconds
+            expiresIn: Number(process.env.JWT_EXPIRES_IN_SECONDS) || 43200
           },
           (err, token) => {
             if (err) {
@@ -128,11 +127,9 @@ router.post("/login", async (req, res) => {
           }
         );
       } else {
-        return res
-          .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+        return res.status(401).json({ message: "Invalid email or password" });
       }
-  } catch (error) {
+  } catch {
     return res.status(500).json({ message: "Unable to sign in" });
   }
 });

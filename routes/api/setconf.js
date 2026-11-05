@@ -47,7 +47,7 @@ router.post('/save', async (req, res) => {
     try {
       const savedSetconf = await newSetconf.save();
       return res.status(201).json(savedSetconf);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to save record' });
     }
 });
@@ -58,7 +58,7 @@ router.delete('/delete/:id', async (req, res) => {
       const deletedSetconf = await Setconf.findByIdAndDelete(req.params.id);
       if (!deletedSetconf) return res.status(404).json({ msg: 'Record not found' });
       return res.json(deletedSetconf);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to delete record' });
     }
   });
@@ -76,7 +76,7 @@ router.put("/update/:id", async (req, res) => {
       const setconf = await Setconf.findByIdAndUpdate(req.params.id, { $set: updates }, { new: true, runValidators: true });
       if (!setconf) return res.status(404).json({ msg: 'Record not found' });
       return res.json(setconf);
-    } catch (error) {
+    } catch {
       return res.status(400).json({ msg: 'Unable to update record' });
     }
   });
