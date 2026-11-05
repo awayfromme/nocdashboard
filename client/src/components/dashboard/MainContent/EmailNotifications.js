@@ -68,13 +68,13 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="enabled" 
+      <Column
+      dataField="enabled"
       dataType="boolean"
-      caption="Enable notification sending" 
+      caption="Enable notification sending"
       />
       </DataGrid>
-      <p>Enable or disable scheduled notification</p> 
+      <p>Enable or disable scheduled notification</p>
     <DataGrid
       id="gridContainer"
       dataSource={store}
@@ -85,9 +85,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="recipients" 
-      caption="Recipients" 
+      <Column
+      dataField="recipients"
+      caption="Recipients"
       />
     </DataGrid>
     <p>Insert recipients for notification maintenance.</p>
@@ -102,9 +102,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="main1d" 
-      caption="Day Maintenance" 
+      <Column
+      dataField="main1d"
+      caption="Day Maintenance"
       dataType="Time"
       />
     </DataGrid>
@@ -120,9 +120,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="main1hs" 
-      caption="Starting Hour Maintenance" 
+      <Column
+      dataField="main1hs"
+      caption="Starting Hour Maintenance"
       />
     </DataGrid>
     <p>Insert planned Hour Start for  Maintenance</p>
@@ -137,9 +137,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="main1he" 
-      caption="Ending Hour Maintenance" 
+      <Column
+      dataField="main1he"
+      caption="Ending Hour Maintenance"
       />
     </DataGrid>
     <p>Insert planned Hour End for Maintenance</p>
@@ -154,9 +154,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="main1ms" 
-      caption="Starting Minutes Maintenance " 
+      <Column
+      dataField="main1ms"
+      caption="Starting Minutes Maintenance "
       />
     </DataGrid>
     <p>Insert planned Minutes Start for Maintenance</p>
@@ -171,9 +171,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="main1me" 
-      caption="Ending Minutes Maintenance" 
+      <Column
+      dataField="main1me"
+      caption="Ending Minutes Maintenance"
       />
     </DataGrid>
     <p>Insert planned Minutes End for Maintenance</p>
@@ -188,9 +188,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="ETAH" 
-      caption="Duration of work (Hours)" 
+      <Column
+      dataField="ETAH"
+      caption="Duration of work (Hours)"
       />
     </DataGrid>
     <p>Insert planned Hours Duration of Work for maintenance</p>
@@ -205,9 +205,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="ETAM" 
-      caption="Duration of work (Minutes)" 
+      <Column
+      dataField="ETAM"
+      caption="Duration of work (Minutes)"
       />
     </DataGrid>
     <p>Insert planned Minutes Duration of Work for maintenance</p>
@@ -222,9 +222,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="loc1" 
-      caption="Location for Maintenance" 
+      <Column
+      dataField="loc1"
+      caption="Location for Maintenance"
       />
     </DataGrid>
     <p>Insert planned Location for Maintenance</p>
@@ -239,9 +239,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="utc" 
-      caption="Set TimeZone" 
+      <Column
+      dataField="utc"
+      caption="Set TimeZone"
       />
     </DataGrid><p>Insert TimeZone to be added into notifications</p>
     <DataGrid
@@ -255,9 +255,9 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="tables1" 
-      caption="Affected Areas-Circuits for Maintenance" 
+      <Column
+      dataField="tables1"
+      caption="Affected Areas-Circuits for Maintenance"
       />
     </DataGrid><p>Insert planned Affected Areas-Circuits for Maintenance</p>
     <DataGrid
@@ -270,12 +270,12 @@ class emanot extends React.Component {
       columnAutoWidth={false}>
       <Editing
         mode="cell"
-        allowUpdating={true} 
+        allowUpdating={true}
         />
-      <Column 
-      dataField="chk72" 
+      <Column
+      dataField="chk72"
       dataType="boolean"
-      caption="Enable Mail 72 Hours before Maintenance" 
+      caption="Enable Mail 72 Hours before Maintenance"
       />
     </DataGrid><p>Enable or disable 72 hours previous maintenances notification </p>
     <DataGrid
@@ -289,10 +289,10 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="chk24" 
+      <Column
+      dataField="chk24"
       dataType="boolean"
-      caption="Enable Mail 24 Hours before Maintenance" 
+      caption="Enable Mail 24 Hours before Maintenance"
       />
     </DataGrid><p>Enable or disable 24 hours previous maintenances notification </p>
     <DataGrid
@@ -306,10 +306,10 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="chk1h" 
+      <Column
+      dataField="chk1h"
       dataType="boolean"
-      caption="Enable Mail 1 Hour before Maintenance" 
+      caption="Enable Mail 1 Hour before Maintenance"
       />
     </DataGrid><p>Enable or disable 1 hour previous maintenances notification </p>
     <DataGrid
@@ -323,10 +323,10 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="chk5mas" 
+      <Column
+      dataField="chk5mas"
       dataType="boolean"
-      caption="Enable Mail 5 Minutes after Maintenance started" 
+      caption="Enable Mail 5 Minutes after Maintenance started"
       />
     </DataGrid><p>Enable or disable 5 minutes after started maintenance notification </p>
     <DataGrid
@@ -340,10 +340,10 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="logo1" 
+      <Column
+      dataField="logo1"
       dataType="string"
-      caption="Logo1 / Base64" 
+      caption="Logo1 / Base64"
       />
     </DataGrid><p>Head logo1 in base64 to be added in the notification</p>
     <DataGrid
@@ -357,10 +357,10 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="logo2" 
+      <Column
+      dataField="logo2"
       dataType="string"
-      caption="Logo2 / Base64" 
+      caption="Logo2 / Base64"
       />
     </DataGrid><p>Head logo2 in base64 to be added in the notification</p>
     <DataGrid
@@ -375,10 +375,10 @@ class emanot extends React.Component {
       <Editing
         mode="cell"
         allowUpdating={true} />
-      <Column 
-      dataField="mdes" 
+      <Column
+      dataField="mdes"
       dataType="string"
-      caption="Main Description Notification Mail" 
+      caption="Main Description Notification Mail"
       />
     </DataGrid><p>Reason of the maintenance to be added in the notification</p>
   </React.Fragment>
@@ -386,4 +386,4 @@ class emanot extends React.Component {
 );
 }
 }
-export default  emanot 
+export default  emanot
